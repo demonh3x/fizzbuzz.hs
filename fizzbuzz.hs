@@ -2,6 +2,7 @@ import Test.HUnit
 
 fizzbuzz :: Int -> String
 fizzbuzz n
+    | fizz && buzz = "FizzBuzz"
     | fizz = "Fizz"
     | buzz = "Buzz"
     | otherwise = show n
@@ -22,6 +23,8 @@ tests = TestList [
     TestLabel "Test6"
     (TestCase (assertEqual "Given 6 should return \"Fizz\"" "Fizz" (fizzbuzz 6))),
     TestLabel "Test10"
-    (TestCase (assertEqual "Given 10 should return \"Buzz\"" "Buzz" (fizzbuzz 10)))]
+    (TestCase (assertEqual "Given 10 should return \"Buzz\"" "Buzz" (fizzbuzz 10))),
+    TestLabel "Test15"
+    (TestCase (assertEqual "Given 15 should return \"FizzBuzz\"" "FizzBuzz" (fizzbuzz 15)))]
 
 main = do runTestTT tests
