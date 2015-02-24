@@ -1,9 +1,10 @@
 import Test.HUnit
 
 fizzbuzz :: Int -> String
-fizzbuzz 3 = "Fizz"
-fizzbuzz 5 = "Buzz"
-fizzbuzz x = show x
+fizzbuzz n
+    | n == 3 = "Fizz"
+    | n == 5 = "Buzz"
+    | otherwise = show n
 
 tests = TestList [
 	TestLabel "Test1"
