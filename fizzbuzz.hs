@@ -2,12 +2,20 @@ import Test.HUnit
 
 fizzbuzz :: Int -> String
 fizzbuzz n
-    | fizz && buzz = "FizzBuzz"
-    | fizz = "Fizz"
-    | buzz = "Buzz"
-    | otherwise = show n
+    | any = foldl
+               (\acc value ->
+                   if (snd value)
+                   then acc ++ (fst value)
+                   else acc)
+               ""
+               factors
+    | not (any) = show n
     where fizz = mod n 3 == 0
           buzz = mod n 5 == 0
+          names = ["Fizz", "Buzz"]
+          applied = [fizz, buzz]
+          factors = zip names applied
+          any = foldr (||) False applied
 
 tests = TestList [
 	TestLabel "Test1"
