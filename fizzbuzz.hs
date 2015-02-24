@@ -2,9 +2,11 @@ import Test.HUnit
 
 fizzbuzz :: Int -> String
 fizzbuzz n
-    | mod n 3 == 0 = "Fizz"
-    | mod n 5 == 0 = "Buzz"
+    | fizz = "Fizz"
+    | buzz = "Buzz"
     | otherwise = show n
+    where fizz = mod n 3 == 0
+          buzz = mod n 5 == 0
 
 tests = TestList [
 	TestLabel "Test1"
