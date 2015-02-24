@@ -3,7 +3,7 @@ import Test.HUnit
 fizzbuzz :: Int -> String
 fizzbuzz n
     | mod n 3 == 0 = "Fizz"
-    | n == 5 = "Buzz"
+    | mod n 5 == 0 = "Buzz"
     | otherwise = show n
 
 tests = TestList [
@@ -18,6 +18,8 @@ tests = TestList [
     TestLabel "Test5"
     (TestCase (assertEqual "Given 5 should return \"Buzz\"" "Buzz" (fizzbuzz 5))),
     TestLabel "Test6"
-    (TestCase (assertEqual "Given 6 should return \"Fizz\"" "Fizz" (fizzbuzz 6)))]
+    (TestCase (assertEqual "Given 6 should return \"Fizz\"" "Fizz" (fizzbuzz 6))),
+    TestLabel "Test10"
+    (TestCase (assertEqual "Given 10 should return \"Buzz\"" "Buzz" (fizzbuzz 10)))]
 
 main = do runTestTT tests
