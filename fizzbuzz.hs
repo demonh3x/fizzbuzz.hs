@@ -18,6 +18,6 @@ tests = TestList [
     TestLabel "Test5"
     (TestCase (assertEqual "Given 5 should return \"Buzz\"" "Buzz" (fizzbuzz 5))),
     TestLabel "Test6"
-    (TestCase (assertEqual "Given 5 should return \"Fizz\"" "Fizz" (fizzbuzz 6)))]
+    (TestCase (assertEqual "Given 6 should return \"Fizz\"" "Fizz" (fizzbuzz 6)))]
 
 main = do runTestTT tests
