@@ -2,7 +2,7 @@ import Test.HUnit
 
 fizzbuzz :: Int -> String
 fizzbuzz n
-    | n == 3 = "Fizz"
+    | mod n 3 == 0 = "Fizz"
     | n == 5 = "Buzz"
     | otherwise = show n
 
