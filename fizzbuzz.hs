@@ -24,7 +24,7 @@ f_or f1 f2 = \x -> (f1 x) || (f2 x)
 
 fizzbuzz :: Int -> String
 fizzbuzz = makeFizzBuzz
-    [("Fizz", dividableBy 3)
+    [("Fizz", dividableBy 3 `f_or` contains 3)
     ,("Buzz", dividableBy 5 `f_or` contains 5)
     ,("Bang", dividableBy 7)
     ]
@@ -46,6 +46,7 @@ tests = TestList (map
     ,(10, "Buzz")
     ,(15, "FizzBuzz")
     ,(105, "FizzBuzzBang")
+    ,(302, "Fizz")
     ,(502, "Buzz")
     ])
 
