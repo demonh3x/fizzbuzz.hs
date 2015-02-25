@@ -26,7 +26,7 @@ fizzbuzz :: Int -> String
 fizzbuzz = makeFizzBuzz
     [("Fizz", dividableBy 3 `f_or` contains 3)
     ,("Buzz", dividableBy 5 `f_or` contains 5)
-    ,("Bang", dividableBy 7)
+    ,("Bang", dividableBy 7 `f_or` contains 7)
     ]
 
 tests = TestList (map
@@ -48,6 +48,7 @@ tests = TestList (map
     ,(105, "FizzBuzzBang")
     ,(302, "Fizz")
     ,(502, "Buzz")
+    ,(701, "Bang")
     ])
 
 main = do runTestTT tests
