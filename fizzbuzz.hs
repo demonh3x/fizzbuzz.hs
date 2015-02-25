@@ -39,6 +39,7 @@ tests = TestList (map
     ,(7, "Bang")
     ,(10, "Buzz")
     ,(15, "FizzBuzz")
+    ,(105, "FizzBuzzBang")
     ])
 
 main = do runTestTT tests
