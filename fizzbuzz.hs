@@ -14,11 +14,14 @@ makeFizzBuzz factors n
           applied = foldr (\value acc -> (snd value):acc) [] results
           any = foldr (||) False applied
 
+dividableBy :: Int -> Int -> Bool
+dividableBy n = \x ->mod x n == 0
+
 fizzbuzz :: Int -> String
 fizzbuzz = makeFizzBuzz [
-    ("Fizz", \n -> mod n 3 == 0),
-    ("Buzz", \n -> mod n 5 == 0),
-    ("Bang", \n -> mod n 7 == 0)]
+    ("Fizz", dividableBy 3),
+    ("Buzz", dividableBy 5),
+    ("Bang", dividableBy 7)]
 
 tests = TestList [
 	TestLabel "Test1"
