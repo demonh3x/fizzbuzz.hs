@@ -10,10 +10,8 @@ fizzbuzz n
                ""
                factors
     | not (any) = show n
-    where fizz = mod n 3 == 0
-          buzz = mod n 5 == 0
-          names = ["Fizz", "Buzz"]
-          applied = [fizz, buzz]
+    where names = ["Fizz", "Buzz", "Bang"]
+          applied = [mod n 3 == 0, mod n 5 == 0, mod n 7 == 0]
           factors = zip names applied
           any = foldr (||) False applied
 
@@ -30,6 +28,8 @@ tests = TestList [
     (TestCase (assertEqual "Given 5 should return \"Buzz\"" "Buzz" (fizzbuzz 5))),
     TestLabel "Test6"
     (TestCase (assertEqual "Given 6 should return \"Fizz\"" "Fizz" (fizzbuzz 6))),
+    TestLabel "Test7"
+    (TestCase (assertEqual "Given 7 should return \"Bang\"" "Bang" (fizzbuzz 7))),
     TestLabel "Test10"
     (TestCase (assertEqual "Given 10 should return \"Buzz\"" "Buzz" (fizzbuzz 10))),
     TestLabel "Test15"
