@@ -1,19 +1,24 @@
 import Test.HUnit
 
-fizzbuzz :: Int -> String
-fizzbuzz n
+makeFizzBuzz :: [(String, Int -> Bool)] -> Int -> String
+makeFizzBuzz factors n
     | any = foldl
-               (\acc value ->
-                   if (snd value)
-                   then acc ++ (fst value)
-                   else acc)
-               ""
-               factors
+                   (\acc value ->
+                       if (snd value)
+                       then acc ++ (fst value)
+                       else acc)
+                   ""
+                   results
     | not (any) = show n
-    where names = ["Fizz", "Buzz", "Bang"]
-          applied = [mod n 3 == 0, mod n 5 == 0, mod n 7 == 0]
-          factors = zip names applied
+    where results = map (\val -> ((fst val), (snd val) n)) factors
+          applied = foldr (\value acc -> (snd value):acc) [] results
           any = foldr (||) False applied
+
+fizzbuzz :: Int -> String
+fizzbuzz = makeFizzBuzz [
+    ("Fizz", \n -> mod n 3 == 0),
+    ("Buzz", \n -> mod n 5 == 0),
+    ("Bang", \n -> mod n 7 == 0)]
 
 tests = TestList [
 	TestLabel "Test1"
