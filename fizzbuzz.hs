@@ -14,7 +14,7 @@ makeFizzBuzz factors n
           any = foldr (||) False (map snd results)
 
 dividableBy :: Int -> Int -> Bool
-dividableBy n = \x ->mod x n == 0
+dividableBy n x = mod x n == 0
 
 fizzbuzz :: Int -> String
 fizzbuzz = makeFizzBuzz
