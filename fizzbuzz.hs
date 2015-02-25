@@ -11,8 +11,7 @@ makeFizzBuzz factors n
                    results
     | not (any) = show n
     where results = map (\val -> ((fst val), (snd val) n)) factors
-          applied = foldr (\value acc -> (snd value):acc) [] results
-          any = foldr (||) False applied
+          any = foldr (||) False (map snd results)
 
 dividableBy :: Int -> Int -> Bool
 dividableBy n = \x ->mod x n == 0
