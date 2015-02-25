@@ -22,24 +22,22 @@ fizzbuzz = makeFizzBuzz [
     ("Buzz", dividableBy 5),
     ("Bang", dividableBy 7)]
 
-tests = TestList [
-	TestLabel "Test1"
-	(TestCase (assertEqual "Given 1 should return \"1\"" "1" (fizzbuzz 1))),
-	TestLabel "Test2"
-    (TestCase (assertEqual "Given 2 should return \"2\"" "2" (fizzbuzz 2))),
-	TestLabel "Test3"
-    (TestCase (assertEqual "Given 3 should return \"Fizz\"" "Fizz" (fizzbuzz 3))),
-    TestLabel "Test4"
-    (TestCase (assertEqual "Given 4 should return \"4\"" "4" (fizzbuzz 4))),
-    TestLabel "Test5"
-    (TestCase (assertEqual "Given 5 should return \"Buzz\"" "Buzz" (fizzbuzz 5))),
-    TestLabel "Test6"
-    (TestCase (assertEqual "Given 6 should return \"Fizz\"" "Fizz" (fizzbuzz 6))),
-    TestLabel "Test7"
-    (TestCase (assertEqual "Given 7 should return \"Bang\"" "Bang" (fizzbuzz 7))),
-    TestLabel "Test10"
-    (TestCase (assertEqual "Given 10 should return \"Buzz\"" "Buzz" (fizzbuzz 10))),
-    TestLabel "Test15"
-    (TestCase (assertEqual "Given 15 should return \"FizzBuzz\"" "FizzBuzz" (fizzbuzz 15)))]
+tests = TestList (map
+    (\c ->
+        TestLabel ("Test" ++ show (fst c))
+        (TestCase (assertEqual
+            ("Given " ++ show (fst c) ++ " should return \"" ++ (snd c) ++ "\"")
+            (snd c)
+            (fizzbuzz (fst c)))))
+    [
+        (1, "1"),
+        (2, "2"),
+        (3, "Fizz"),
+        (4, "4"),
+        (5, "Buzz"),
+        (6, "Fizz"),
+        (7, "Bang"),
+        (10, "Buzz"),
+        (15, "FizzBuzz")])
 
 main = do runTestTT tests
