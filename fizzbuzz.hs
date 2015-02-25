@@ -17,10 +17,11 @@ dividableBy :: Int -> Int -> Bool
 dividableBy n = \x ->mod x n == 0
 
 fizzbuzz :: Int -> String
-fizzbuzz = makeFizzBuzz [
-    ("Fizz", dividableBy 3),
-    ("Buzz", dividableBy 5),
-    ("Bang", dividableBy 7)]
+fizzbuzz = makeFizzBuzz
+    [("Fizz", dividableBy 3)
+    ,("Buzz", dividableBy 5)
+    ,("Bang", dividableBy 7)
+    ]
 
 tests = TestList (map
     (\c ->
@@ -29,15 +30,15 @@ tests = TestList (map
             ("Given " ++ show (fst c) ++ " should return \"" ++ (snd c) ++ "\"")
             (snd c)
             (fizzbuzz (fst c)))))
-    [
-        (1, "1"),
-        (2, "2"),
-        (3, "Fizz"),
-        (4, "4"),
-        (5, "Buzz"),
-        (6, "Fizz"),
-        (7, "Bang"),
-        (10, "Buzz"),
-        (15, "FizzBuzz")])
+    [(1, "1")
+    ,(2, "2")
+    ,(3, "Fizz")
+    ,(4, "4")
+    ,(5, "Buzz")
+    ,(6, "Fizz")
+    ,(7, "Bang")
+    ,(10, "Buzz")
+    ,(15, "FizzBuzz")
+    ])
 
 main = do runTestTT tests
