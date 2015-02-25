@@ -16,10 +16,16 @@ makeFizzBuzz factors n
 dividableBy :: Int -> Int -> Bool
 dividableBy n x = mod x n == 0
 
+contains :: (Show s) => s -> s -> Bool
+contains content container = foldr (&&) True (map (\e -> elem e (show container)) (show content))
+
+f_or :: (a -> Bool) -> (a -> Bool) -> a -> Bool
+f_or f1 f2 = \x -> (f1 x) || (f2 x)
+
 fizzbuzz :: Int -> String
 fizzbuzz = makeFizzBuzz
     [("Fizz", dividableBy 3)
-    ,("Buzz", dividableBy 5)
+    ,("Buzz", dividableBy 5 `f_or` contains 5)
     ,("Bang", dividableBy 7)
     ]
 
@@ -40,6 +46,7 @@ tests = TestList (map
     ,(10, "Buzz")
     ,(15, "FizzBuzz")
     ,(105, "FizzBuzzBang")
+    ,(502, "Buzz")
     ])
 
 main = do runTestTT tests
